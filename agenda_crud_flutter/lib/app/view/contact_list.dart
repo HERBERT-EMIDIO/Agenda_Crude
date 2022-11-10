@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:agenda_crud_flutter/app/my_app.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
@@ -43,10 +45,22 @@ class ContactList extends StatelessWidget {
         itemCount: lista.length,
         itemBuilder: (context, i) {
           var contato = lista[i];
-          var avatar = CircleAvatar();
+          // ignore: unused_local_variable
+          var avatar =
+              CircleAvatar(backgroundImage: NetworkImage(contato['avatar']!));
           return ListTile(
+            leading: avatar,
             title: Text(contato['nome']!),
             subtitle: Text(contato['telefone']!),
+            trailing: Container(
+              width: 100,
+              child: Row(
+                children: [
+                  IconButton(icon: Icon(Icons.edit), onPressed: null),
+                  IconButton(icon: Icon(Icons.delete), onPressed: null),
+                ],
+              ),
+            ),
           );
         },
       ),
